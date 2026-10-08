@@ -1,0 +1,89 @@
+@import './tokens.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (pointer: fine) {
+  body {
+    cursor: url('/cursors/arrow.svg') 4 4, auto;
+  }
+  a,
+  button,
+  [role='button'] {
+    cursor: url('/cursors/pointer.svg') 4 4, pointer;
+  }
+  input,
+  textarea,
+  select {
+    cursor: auto;
+  }
+}
+
+body {
+  font-family: 'Outfit', system-ui, sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-pixel {
+  font-family: 'Pixelify Sans', system-ui, sans-serif;
+}
+
+.grid-paper {
+  background-image:
+    linear-gradient(to right, #e5e7eb 1px, transparent 1px),
+    linear-gradient(to bottom, #e5e7eb 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.vertical-label {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
+@keyframes pixel-spark {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(calc(-50% + var(--dx, 0px)), calc(-50% + var(--dy, 40px))) scale(0.2) rotate(90deg);
+  }
+}
+
+.pixel-spark {
+  animation-name: pixel-spark;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+}
+
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible {
+  outline: none;
+  --tw-ring-color: #3b82f6;
+  --tw-ring-offset-width: 2px;
+  box-shadow: none;
+}
+
+.interactive-focus:focus-visible {
+  @apply ring-2 ring-offset-2 ring-blue-500;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
